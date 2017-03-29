@@ -23,3 +23,5 @@ Gemfile.lock
 
 src/.vs/
 src/packages/
+TestResult.xml
+src/CommonAssemblyInfo.cs

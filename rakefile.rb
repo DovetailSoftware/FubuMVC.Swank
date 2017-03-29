@@ -61,5 +61,5 @@ end
 
 desc 'Run the unit tests without compile'
 task :fast_test do
-  sh "src/packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe src/Tests/bin/Tests.dll"
+  sh "src/packages/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe src/Tests/bin/#{COMPILE_TARGET}/Tests.dll"
 end
