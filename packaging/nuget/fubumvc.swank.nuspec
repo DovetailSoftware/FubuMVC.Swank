@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>FubuMVC.Swank</id>
+    <version>0.0.0</version>
+    <authors>Ultraviolet Catastrophe</authors>
+    <owners>Ultraviolet Catastrophe</owners>
+    <licenseUrl>https://raw.githubusercontent.com/mikeobrien/FubuMVC.Swank/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FubuMVC.Swank</description>
+  </metadata>
+  <files>
+    <file src="..\..\src\Swank\bin\FubuMVC.Swank.*" target="lib\net40" />
+  </files>
+</package>
