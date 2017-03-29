@@ -18,3 +18,7 @@ src/packages/*/src/*
 
 # Generated bottle content
 src/*/pak-*
+
+Gemfile.lock
+
+src/.vs/

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using FubuMVC.Swank.Extensions;
 using FubuMVC.Swank.Specification;
@@ -10,13 +11,20 @@ namespace Tests.Specification.MergeServiceTests
     [TestFixture]
     public class MergeServiceTests
     {
-        private static readonly string JsonPath = Path.GetFullPath(@"Specification\MergeServiceTests\Merge.json");
+        private string _jsonPath;
         private FubuMVC.Swank.Specification.Specification _spec1;
 
         [SetUp]
         public void Setup()
         {
-            _spec1 = File.ReadAllText(JsonPath).DeserializeJson<FubuMVC.Swank.Specification.Specification>();
+            
+            var dir = Path.GetDirectoryName(typeof(MergeServiceTests).Assembly.CodeBase);
+            dir = new Uri(dir).LocalPath;
+            Directory.SetCurrentDirectory(dir);
+
+            _jsonPath = Path.GetFullPath(@"Specification\MergeServiceTests\Merge.json");
+
+            _spec1 = File.ReadAllText(_jsonPath).DeserializeJson<FubuMVC.Swank.Specification.Specification>();
         }
 
         [Test]
@@ -24,7 +32,7 @@ namespace Tests.Specification.MergeServiceTests
         {
             var spec = new MergeService().Merge(
                 _spec1, 
-                JsonPath);
+                _jsonPath);
 
             spec.Types.Count.ShouldEqual(1);
             var type = spec.Types[0];

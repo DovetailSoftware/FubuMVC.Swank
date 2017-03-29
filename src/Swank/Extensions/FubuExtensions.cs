@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +11,7 @@ using FubuMVC.Core.Registration;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Core.Registration.ObjectGraph;
 using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Media.Projections;
+using FubuMVC.Core.Media.Projections;
 using FubuMVC.Swank.Description;
 
 namespace FubuMVC.Swank.Extensions

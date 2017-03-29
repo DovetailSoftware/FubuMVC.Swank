@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using FubuMVC.Core;
-using FubuMVC.Media.Projections;
+using FubuMVC.Core.Media.Projections;
 using FubuMVC.Swank.Description;
 
 namespace Tests.Specification.SpecificationService.TypeTests

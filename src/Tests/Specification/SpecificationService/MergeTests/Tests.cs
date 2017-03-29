@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.IO;
+using NUnit.Framework;
 using Should;
 using Tests.Specification.SpecificationService.Tests;
 
@@ -10,6 +12,14 @@ namespace Tests.Specification.SpecificationService.MergeTests
     public class Tests : InteractionContext
     {
         private const string specFile = @"Specification\SpecificationService\MergeTests\Merge.json";
+
+        [SetUp]
+        public void SetUp()
+        {
+            var dir = Path.GetDirectoryName(typeof(Tests).Assembly.CodeBase);
+            dir = new Uri(dir).LocalPath;
+            Directory.SetCurrentDirectory(dir);
+        }
 
         [Test]
         public void should_merge_all_the_things()

@@ -11,13 +11,11 @@ namespace FubuMVC.Swank.Extensions.Compatibility
 {
     public static class ReflectionExtensions
     {
-        [Obsolete(".NET 4.5 Compatibility")]
         public static T GetCustomAttribute<T>(this MemberInfo memberInfo)
         {
             return memberInfo.GetCustomAttributes<T>().FirstOrDefault();
         }
 
-        [Obsolete(".NET 4.5 Compatibility")]
         public static IEnumerable<T> GetCustomAttributes<T>(this MemberInfo memberInfo)
         {
             return memberInfo.GetCustomAttributes(true).OfType<T>();

@@ -1,8 +1,9 @@
-﻿using FubuMVC.Swank;
+﻿using System;
+using System.IO;
+using FubuMVC.Swank;
 using FubuMVC.Swank.Extensions;
 using NUnit.Framework;
 using Should;
-using System.Web.Script.Serialization;
 
 namespace Tests
 {
@@ -11,14 +12,18 @@ namespace Tests
     {
         private Website _testWebsite;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
+            var dir = Path.GetDirectoryName(typeof(Specification.SpecificationService.MergeTests.Tests).Assembly.CodeBase);
+            dir = new Uri(dir).LocalPath;
+            Directory.SetCurrentDirectory(dir);
+
             _testWebsite = new Website();
             _testWebsite.Create(typeof(Swank).Assembly.GetName().Name, Paths.TestHarness);
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             _testWebsite.Remove();

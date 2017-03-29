@@ -1,1 +1,5 @@
-%1..\packages\Bottles.1.1.0.533\tools\BottleRunner.exe create %1..\Swank -o %1fubu-content\fubu-swank.zip -f
+@echo off
+setlocal
+for /d %%f in (%1..\packages\bottles*) do set BDIR=%%f
+%BDIR%\tools\BottleRunner.exe create %1..\Swank -o %1fubu-content\fubu-swank.zip -f
+endlocal
