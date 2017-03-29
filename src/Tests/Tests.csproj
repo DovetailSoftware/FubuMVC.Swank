@@ -136,7 +136,6 @@
     <EmbeddedResource Include="Description\EndpointConventionTests\EndpointDescriptions\RequestDescription\EmbeddedHandlerDescriptionGetHandler.Request.md" />
     <EmbeddedResource Include="Description\EndpointConventionTests\EndpointDescriptions\ResponseDescription\EmbeddedHandlerDescriptionGetHandler.Response.md" />
     <EmbeddedResource Include="Description\EndpointConventionTests\EndpointDescriptions\ResponseDescription\EmbeddedDescriptionGetHandler.Execute.Response.md" />
-    <None Include="app.config" />
     <None Include="Specification\MergeServiceTests\Merge.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -22,3 +22,4 @@ src/*/pak-*
 Gemfile.lock
 
 src/.vs/
+src/packages/
