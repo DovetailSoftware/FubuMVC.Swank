@@ -7,7 +7,7 @@ using Should;
 
 namespace Tests
 {
-    [TestFixture, Ignore("These don't work on the build server and I don't have time to fix them now (doing the big fubu consolidation for Dovetail)"]
+    [TestFixture, Ignore("These don't work on the build server and I don't have time to fix them now (doing the big fubu consolidation for Dovetail")]
     public class AcceptanceTests
     {
         private Website _testWebsite;
