@@ -79,7 +79,6 @@
   <ItemGroup>
     <Content Include="Content\Scripts\swank\swank.js" />
     <Content Include="Content\Styles\swank\swank.css" />
-    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs">
@@ -175,4 +174,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <EmbeddedResource Include="pak-WebContent.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pak-Data.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pak-Config.zip" />
+  </ItemGroup>
 </Project>
