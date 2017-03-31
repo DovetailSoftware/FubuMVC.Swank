@@ -93,90 +93,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\jquery-1.8.2.min.js" />
-    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\Content\scripts\underscore-min.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\arrow-turn-000-left-icon.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\block.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\console-line.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\down-arrow.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\external-link-icons-lg.jpg" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\external.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\filter_wrap_left.gif" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\filter_wrap_right.gif" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\fubumvc.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\logo.png" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Images\pre_code_bg_blk.gif" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\diagnostics\json2.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\diagnostics\knockout-1.1.2.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\diagnostics\requestVisualization.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\diagnostics\routes.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\diagnostics\underscore-min.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Scripts\jquery-1.7.min.js" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\chains\view.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\bootstrap.overrides.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\default.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\html\preview.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\html\selector.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\master.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Content\Styles\diagnostics\requests\view.css" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Shared\bindings.xml" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\scripts\jquery-ui-1.8.21.custom.min.js" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-icons_222222_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-icons_454545_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-icons_888888_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\smoothness\jquery-ui-1.8.21.custom.css" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_217bc0_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_469bdd_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_6da8d5_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_d8e7f3_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\Content\styles\themes\redmond\jquery-ui-1.8.21.custom.css" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Images\sort-asc.gif" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Images\sort-asc.png" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Images\sort-desc.gif" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Images\sort-desc.png" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\json2.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\jquery.event.drag-2.0.min.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\slick.core.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\slick.editors.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\slick.formatters.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\slick.grid.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\SlickGridActivator.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\slickGridTemplates.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Scripts\slickgrid\specs\SlickGridActivator.spec.js" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Styles\slickgrid\examples.css" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Styles\slickgrid\slick-default-theme.css" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\Content\Styles\slickgrid\slick.grid.css" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\activate-collapsible.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\bootstrap-collapse.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\bootstrap-modal.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\bootstrap-tabs.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\bootstrap-transition.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\scripts\twitter\bootstrap.min.js" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\styles\img\glyphicons-halflings-white.png" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\styles\img\glyphicons-halflings.png" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\styles\twitter\bootstrap-responsive.min.css" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\Content\styles\twitter\bootstrap.min.css" />
     <Content Include="scripts\script.js" />
     <Content Include="styles\style.css" />
     <Content Include="Web.config">
@@ -222,53 +138,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Administration\Users\Resource.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="fubu-content\FubuMVC.Core.Assets\.version" />
-    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\.package-manifest" />
-    <Content Include="fubu-content\FubuMVC.Core.Assets\WebContent\global.asset.config" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\.version" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Chains\ChainVisualization.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Chrome\Chrome.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Dashboard\Dashboard.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\diagnostics.asset.config" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\ModelBinding\ModelBindingGraph.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\packages.config" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Packaging\Packaging.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\repositories.config" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Requests\Requests.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Requests\RequestVisualization.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Routes\Routes.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Services\ServiceEndpoints.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Shared\Application.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Shared\_global.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\Visualization\BehaviorNode.spark" />
-    <Content Include="fubu-content\FubuMVC.Diagnostics\WebContent\web.config" />
-    <None Include="fubu-content\FubuMVC.Diagnostics\WebContent\web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="fubu-content\FubuMVC.Diagnostics\WebContent\web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <Content Include="fubu-content\FubuMVC.JQueryUI\.version" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\jqueryui.asset.config" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\packages.config" />
-    <Content Include="fubu-content\FubuMVC.JQueryUI\WebContent\repositories.config" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\.version" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\packages.config" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\repositories.config" />
-    <Content Include="fubu-content\FubuMVC.SlickGrid\WebContent\slickgrid.asset.config" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\.version" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\packages.config" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\repositories.config" />
-    <Content Include="fubu-content\FubuMVC.TwitterBootstrap\WebContent\twitterbootstrap.asset.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="fubu-content\FubuMVC.Core.UI\" />
-    <Folder Include="fubu-content\FubuMVC.Core.View\" />
-    <Folder Include="fubu-content\FubuMVC.Media\" />
-    <Folder Include="fubu-content\FubuMVC.Navigation\" />
-    <Folder Include="fubu-content\FubuMVC.Spark\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Swank\Swank.csproj">
       <Project>{b24d9a42-67e1-4878-a910-bade3248926e}</Project>
@@ -301,7 +171,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>if $(ConfigurationName) == Debug $(SolutionDir)..\build\build-bottle.cmd $(ProjectDir)</PreBuildEvent>
+    <PreBuildEvent>if $(ConfigurationName) == Debug $(SolutionDir)..\build-bottle.cmd $(ProjectDir)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
