@@ -14,7 +14,7 @@ end
 desc "Create the assembly-pak bottles file"
 task :pack_bottle do
   toolPath = get_nuget_tool_path("Bottles", "BottleRunner.exe")
-  fullCmd "#{toolPath} assembly-pak src/Swank -p Swank.csproj"
+  fullCmd = "#{toolPath} assembly-pak src/Swank -p Swank.csproj"
   sh fullCmd
 end
 
