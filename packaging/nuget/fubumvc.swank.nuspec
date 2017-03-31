@@ -10,7 +10,7 @@
     <description>FubuMVC.Swank</description>
     <dependencies>
       <dependency id="FubuMVC.Core" version="100.0"/>
-      <dependency "MarkdownSharp" version="1.0.0.0"/>
+      <dependency id="MarkdownSharp" version="1.0.0.0"/>
     </dependencies>
   </metadata>
   <files>
