@@ -18,7 +18,7 @@
         
         var idParts = id.split('@', 2);
         var moduleName = idParts[0];
-        var resourceName = idParts[1];
+        var resourceName = decodeURIComponent(idParts[1]);
 
         var module = specification.Modules
                             .filter(function (x) { return x.Name === moduleName; })[0];
