@@ -6,8 +6,25 @@ build_number = "#{BUILD_VERSION}.#{build_revision}"
 BUILD_NUMBER = build_number 
 msbuild = '"C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe"'
 
+require 'win32/registry'
+# See: https://en.wikibooks.org/wiki/Ruby_Programming/Standard_Library/Win32::Registry
+desc "Testing msbuild"
+task :msbuild do
+  puts getMsbuildToolsPath(14.0)
+end
+
+def self.getMsbuildToolsPath(msbuildToolsVersion)
+    Win32::Registry::HKEY_LOCAL_MACHINE.open("Software\\Microsoft\\MSBuild\\ToolsVersions\\#{msbuildToolsVersion}") do |reg|
+      #reg.each{|name, type, value| puts name, type, value}
+      #reg.each_key{|k, v| puts k, v}
+      return reg['MSBuildToolsPath'] + 'MSBuild.exe'
+    end
+end
+
 desc 'Compile the code'
 task :compile => [:clean, :version, :pack_bottle] do
+  msbuild = getMsbuildToolsPath(14.0)
+  msbuild = '"'+msbuild+'"'
   sh "#{msbuild} src/FubuMVC.Swank.sln /property:Configuration=#{COMPILE_TARGET} /v:m /t:rebuild /nr:False /maxcpucount:8"
 end
 
