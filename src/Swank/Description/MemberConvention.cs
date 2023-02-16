@@ -1,10 +1,10 @@
-﻿using System.Reflection;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using FubuCore;
 using FubuCore.Reflection;
 using FubuMVC.Swank.Extensions;
 using FubuMVC.Swank.Extensions.Compatibility;
+using PropertyInfo = System.Reflection.PropertyInfo;
 
 namespace FubuMVC.Swank.Description
 {

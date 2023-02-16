@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using FubuMVC.Swank.Extensions;
+﻿using FubuMVC.Swank.Extensions;
 using FubuMVC.Swank.Extensions.Compatibility;
+using FieldInfo = System.Reflection.FieldInfo;
 
 namespace FubuMVC.Swank.Description
 {
