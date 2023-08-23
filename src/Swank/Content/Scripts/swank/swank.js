@@ -201,6 +201,7 @@
             case 'post': return 'green';
             case 'put': return 'yellow';
             case 'update': return 'yellow';
+            case 'patch': return 'yellow';
             case 'delete': return 'red';
             default: return 'blue';
         }

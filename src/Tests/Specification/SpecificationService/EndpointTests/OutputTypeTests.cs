@@ -47,6 +47,16 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         }
 
         [Test]
+        public void should_set_patch_output_type_description()
+        {
+            var response = Spec.GetEndpoint<OutputTypeDescriptions.PatchHandler>().Response;
+
+            response.Name.ShouldEqual("PatchResponse");
+            response.Comments.ShouldEqual("Some patch response description");
+            response.IsArray.ShouldBeFalse();
+        }
+
+        [Test]
         public void should_set_the_datatype_for__output_types_to_a_hash_of_the_datatype()
         {
             Spec.GetEndpoint<OutputTypeDescriptions.GetHandler>().Response.Type
@@ -60,6 +70,9 @@ namespace Tests.Specification.SpecificationService.EndpointTests
 
             Spec.GetEndpoint<OutputTypeDescriptions.DeleteHandler>().Response.Type
                 .ShouldEqual(typeof(OutputTypeDescriptions.DeleteResponse).GetHash());
+
+            Spec.GetEndpoint<OutputTypeDescriptions.PatchHandler>().Response.Type
+                .ShouldEqual(typeof(OutputTypeDescriptions.PatchResponse).GetHash());
         }
 
         [Test]

@@ -27,7 +27,17 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         }
 
         [Test]
-        public void should_set_the_datatype_for_post_input_post_and_put_types_to_a_hash_of_the_datatype_and_handler_method()
+        public void should_set_patch_input_type_description()
+        {
+            var request = Spec.GetEndpoint<InputTypeDescriptions.PatchHandler>().Request;
+
+            request.Name.ShouldEqual("PatchRequest");
+            request.Comments.ShouldEqual("Some patch request description");
+            request.IsArray.ShouldBeFalse();
+        }
+
+        [Test]
+        public void should_set_the_datatype_for_post_input_post_and_put_and_patch_types_to_a_hash_of_the_datatype_and_handler_method()
         {
             Spec.GetEndpoint<InputTypeDescriptions.PostHandler>().Request.Type
                 .ShouldEqual(typeof(InputTypeDescriptions.PostRequest)
@@ -36,6 +46,10 @@ namespace Tests.Specification.SpecificationService.EndpointTests
             Spec.GetEndpoint<InputTypeDescriptions.PutHandler>().Request.Type
                 .ShouldEqual(typeof(InputTypeDescriptions.PutRequest)
                     .GetHash(typeof(InputTypeDescriptions.PutHandler).GetExecuteMethod()));
+
+            Spec.GetEndpoint<InputTypeDescriptions.PatchHandler>().Request.Type
+                .ShouldEqual(typeof(InputTypeDescriptions.PatchRequest)
+                    .GetHash(typeof(InputTypeDescriptions.PatchHandler).GetExecuteMethod()));
         }
 
         [Test]

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using FubuCore;
+﻿using FubuCore;
 using FubuCore.Reflection;
 using FubuMVC.Core.Registration.Nodes;
 using FubuMVC.Swank.Description;
 using FubuMVC.Swank.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace FubuMVC.Swank.Specification
 {
@@ -22,9 +22,19 @@ namespace FubuMVC.Swank.Specification
             public BehaviorChain Chain { get; set; }
         }
 
-        public static readonly Func<string, int> HttpVerbRank = x => { switch (x.IsEmpty() ? null : x.ToLower()) 
-            { case "get": return 0; case "post": return 1; case "put": return 2; 
-              case "update": return 3; case "delete": return 5; default: return 4; } };
+        public static readonly Func<string, int> HttpVerbRank = x =>
+        {
+            switch (x.IsEmpty() ? null : x.ToLower())
+            {
+                case "get": return 0;
+                case "post": return 1;
+                case "put": return 2;
+                case "update": return 3;
+                case "delete": return 5;
+                case "patch": return 6;
+                default: return 4;
+            }
+        };
 
         private readonly Configuration _configuration;
         private readonly BehaviorSource _behaviors;
@@ -40,7 +50,7 @@ namespace FubuMVC.Swank.Specification
         private readonly MergeService _mergeService;
 
         public SpecificationService(
-            Configuration configuration, 
+            Configuration configuration,
             BehaviorSource behaviors,
             ITypeDescriptorCache typeCache,
             IDescriptionConvention<BehaviorChain, ModuleDescription> moduleConvention,
@@ -73,15 +83,16 @@ namespace FubuMVC.Swank.Specification
 
             CheckForOrphanedChains(behaviorMappings);
 
-            var specification = new Specification {
-                    Name = _configuration.Name,
-                    Comments = _configuration.AppliesToAssemblies
+            var specification = new Specification
+            {
+                Name = _configuration.Name,
+                Comments = _configuration.AppliesToAssemblies
                         .Select(x => x.FindTextResourceNamed("*" + _configuration.Comments))
                         .FirstOrDefault(x => x != null),
-                    Types = GatherInputOutputModels(behaviorMappings.Select(x => x.Chain).ToList()),
-                    Modules = GetModules(behaviorMappings.Where(x => x.Module != null).ToList()),
-                    Resources = GetResources(behaviorMappings.Where(x => x.Module == null).ToList())
-                };
+                Types = GatherInputOutputModels(behaviorMappings.Select(x => x.Chain).ToList()),
+                Modules = GetModules(behaviorMappings.Where(x => x.Module != null).ToList()),
+                Resources = GetResources(behaviorMappings.Where(x => x.Module == null).ToList())
+            };
             if (_configuration.MergeSpecificationPath.IsNotEmpty())
                 specification = _mergeService.Merge(specification, _configuration.MergeSpecificationPath);
             return specification;
@@ -96,7 +107,8 @@ namespace FubuMVC.Swank.Specification
                               _configuration.OrphanedModuleActions != OrphanedActions.Exclude))
                 .Where(x => ((_configuration.OrphanedResourceActions == OrphanedActions.Exclude && x.Resource != null) ||
                               _configuration.OrphanedResourceActions != OrphanedActions.Exclude))
-                .Select(x => new BehaviorMapping {
+                .Select(x => new BehaviorMapping
+                {
                     Chain = x.Chain,
                     FirstAction = x.Chain.FirstCall(),
                     LastAction = x.Chain.LastCall(),
@@ -133,11 +145,13 @@ namespace FubuMVC.Swank.Specification
             return rootInputOutputModels
                 .Concat(rootInputOutputModels.SelectMany(GetTypes))
                 .DistinctBy(x => x.Type, x => x.Chain)
-                .Select(cxt => {
+                .Select(cxt =>
+                {
                     var description = _typeConvention.GetDescription(cxt.Type);
                     var type = description.WhenNotNull(y => y.Type).Otherwise(cxt.Type);
 
-                    return _configuration.TypeOverrides.Apply(cxt.Type, new Type {
+                    return _configuration.TypeOverrides.Apply(cxt.Type, new Type
+                    {
                         Id = cxt.Chain != null
                             ? _configuration.InputTypeIdConvention(type, cxt.Chain.FirstCall().Method)
                             : _configuration.TypeIdConvention(type),
@@ -179,7 +193,7 @@ namespace FubuMVC.Swank.Specification
 
             var types = properties
                 .Where(x => !x.IsHidden() &&
-                            !(x.PropertyType.GetListElementType() ?? x.PropertyType).IsSystemType() && 
+                            !(x.PropertyType.GetListElementType() ?? x.PropertyType).IsSystemType() &&
                             !x.PropertyType.IsEnum &&
                             !x.IsAutoBound())
                 .Select(x => new TypeContext(x.PropertyType.GetListElementType() ?? x.PropertyType, parent: type))
@@ -211,28 +225,31 @@ namespace FubuMVC.Swank.Specification
                             !x.IsAutoBound() &&
                             !x.IsQuerystring(action) &&
                             !x.IsUrlParameter(action))
-                .Select(x => {
-                        var description = _memberConvention.GetDescription(x);
-                        var memberType = description.WhenNotNull(y => y.Type).Otherwise(x.PropertyType.GetListElementType(), x.PropertyType);
-                        return _configuration.MemberOverrides.Apply(x, new Member {
-                            Name = description.WhenNotNull(y => y.Name).OtherwiseDefault(),
-                            Comments = description.WhenNotNull(y => y.Comments).OtherwiseDefault(),
-                            DefaultValue = description.WhenNotNull(y => y.DefaultValue).WhenNotNull(z => z.ToDefaultValueString(_configuration)).OtherwiseDefault(),
-                            Required = description.WhenNotNull(y => y.Required).OtherwiseDefault(),
-                            Type = memberType.IsSystemType() || memberType.IsEnum ? memberType.GetXmlName() : _configuration.TypeIdConvention(memberType),
-                            IsArray = x.PropertyType.IsArray || x.PropertyType.IsList(),
-                            ArrayItemName = description.WhenNotNull(y => y.ArrayItemName).OtherwiseDefault(),
-                            Options = GetOptions(x.PropertyType)
-                        });
-                    })
+                .Select(x =>
+                {
+                    var description = _memberConvention.GetDescription(x);
+                    var memberType = description.WhenNotNull(y => y.Type).Otherwise(x.PropertyType.GetListElementType(), x.PropertyType);
+                    return _configuration.MemberOverrides.Apply(x, new Member
+                    {
+                        Name = description.WhenNotNull(y => y.Name).OtherwiseDefault(),
+                        Comments = description.WhenNotNull(y => y.Comments).OtherwiseDefault(),
+                        DefaultValue = description.WhenNotNull(y => y.DefaultValue).WhenNotNull(z => z.ToDefaultValueString(_configuration)).OtherwiseDefault(),
+                        Required = description.WhenNotNull(y => y.Required).OtherwiseDefault(),
+                        Type = memberType.IsSystemType() || memberType.IsEnum ? memberType.GetXmlName() : _configuration.TypeIdConvention(memberType),
+                        IsArray = x.PropertyType.IsArray || x.PropertyType.IsList(),
+                        ArrayItemName = description.WhenNotNull(y => y.ArrayItemName).OtherwiseDefault(),
+                        Options = GetOptions(x.PropertyType)
+                    });
+                })
                 .ToList();
-        } 
+        }
 
         private List<Module> GetModules(IEnumerable<BehaviorMapping> behaviorMappings)
         {
             return behaviorMappings
                 .GroupBy(x => x.Module)
-                .Select(x => _configuration.ModuleOverrides.Apply(new Module {
+                .Select(x => _configuration.ModuleOverrides.Apply(new Module
+                {
                     Name = x.Key.Name,
                     Comments = x.Key.Comments,
                     Resources = GetResources(x.Select(y => y).ToList())
@@ -244,7 +261,8 @@ namespace FubuMVC.Swank.Specification
         {
             return behaviorMappings
                 .GroupBy(x => x.Resource)
-                .Select(x => _configuration.ResourceOverrides.Apply(new Resource {
+                .Select(x => _configuration.ResourceOverrides.Apply(new Resource
+                {
                     Name = x.Key.Name,
                     Comments = x.Key.Comments ?? x.First().FirstAction.HandlerType.Assembly
                         .FindTextResourceNamed(x.First().FirstAction.HandlerType.Namespace + ".resource"),
@@ -256,11 +274,13 @@ namespace FubuMVC.Swank.Specification
         private List<Endpoint> GetEndpoints(IEnumerable<BehaviorChain> chains)
         {
             return chains
-                .Select(chain => {
+                .Select(chain =>
+                {
                     var endpoint = _endpointConvention.GetDescription(chain);
                     var route = chain.Route;
                     var querystring = chain.FirstCall().HasInput ? GetQuerystringParameters(chain) : null;
-                    return _configuration.EndpointOverrides.Apply(chain, new Endpoint {
+                    return _configuration.EndpointOverrides.Apply(chain, new Endpoint
+                    {
                         Name = endpoint.WhenNotNull(y => y.Name).OtherwiseDefault(),
                         Comments = endpoint.WhenNotNull(y => y.Comments).OtherwiseDefault(),
                         Url = route.Pattern.EnusureStartsWith("/") + querystring.Join(y => "{0}={{{0}}}".ToFormat(y.Name), "?", "&", ""),
@@ -269,7 +289,7 @@ namespace FubuMVC.Swank.Specification
                         QuerystringParameters = querystring,
                         StatusCodes = GetStatusCodes(chain),
                         Headers = GetHeaders(chain),
-                        Request = chain.FirstCall().HasInput && (route.AllowsPost() || route.AllowsPut())
+                        Request = chain.FirstCall().HasInput && (route.AllowsPost() || route.AllowsPut() || route.AllowsPatch())
                             ? _configuration.RequestOverrides.Apply(chain, GetData(chain.InputType(), endpoint.RequestComments, chain.FirstCall().Method))
                             : null,
                         Response = chain.LastCall().HasOutput
@@ -285,15 +305,17 @@ namespace FubuMVC.Swank.Specification
 
             var properties = _typeCache.GetPropertiesFor(action.InputType());
             return action.ParentChain().Route.Input.RouteParameters.Select(
-                x => {
+                x =>
+                {
                     var property = properties[x.Name];
                     var description = _memberConvention.GetDescription(property);
-                    return _configuration.UrlParameterOverrides.Apply(chain, property, new UrlParameter {
-                            Name = description.WhenNotNull(y => y.Name).OtherwiseDefault(),
-                            Comments = description.WhenNotNull(y => y.Comments).OtherwiseDefault(),
-                            Type = property.PropertyType.GetXmlName(),
-                            Options = GetOptions(property.PropertyType)
-                        });
+                    return _configuration.UrlParameterOverrides.Apply(chain, property, new UrlParameter
+                    {
+                        Name = description.WhenNotNull(y => y.Name).OtherwiseDefault(),
+                        Comments = description.WhenNotNull(y => y.Comments).OtherwiseDefault(),
+                        Type = property.PropertyType.GetXmlName(),
+                        Options = GetOptions(property.PropertyType)
+                    });
                 }).ToList();
         }
 
@@ -302,12 +324,14 @@ namespace FubuMVC.Swank.Specification
             var action = chain.FirstCall();
 
             return _typeCache.GetPropertiesFor(action.InputType())
-                .Where(x => x.Value.IsQuerystring(action) && 
-                            !x.Value.HasAttribute<HideAttribute>() && 
+                .Where(x => x.Value.IsQuerystring(action) &&
+                            !x.Value.HasAttribute<HideAttribute>() &&
                             !x.Value.IsAutoBound())
-                .Select(x => {
+                .Select(x =>
+                {
                     var description = _memberConvention.GetDescription(x.Value);
-                    return _configuration.QuerystringOverrides.Apply(chain, x.Value, new QuerystringParameter {
+                    return _configuration.QuerystringOverrides.Apply(chain, x.Value, new QuerystringParameter
+                    {
                         Name = description.WhenNotNull(y => y.Name).OtherwiseDefault(),
                         Comments = description.WhenNotNull(y => y.Comments).OtherwiseDefault(),
                         Type = (x.Value.PropertyType.GetListElementType() ?? x.Value.PropertyType).GetXmlName(),
@@ -322,7 +346,8 @@ namespace FubuMVC.Swank.Specification
         private List<StatusCode> GetStatusCodes(BehaviorChain chain)
         {
             return _statusCodeConvention.GetDescription(chain)
-                .Select(x => _configuration.StatusCodeOverrides.Apply(chain, new StatusCode {
+                .Select(x => _configuration.StatusCodeOverrides.Apply(chain, new StatusCode
+                {
                     Code = x.Code,
                     Name = x.Name,
                     Comments = x.Comments
@@ -332,7 +357,8 @@ namespace FubuMVC.Swank.Specification
         private List<Header> GetHeaders(BehaviorChain chain)
         {
             return _headerConvention.GetDescription(chain)
-                .Select(x => _configuration.HeaderOverrides.Apply(chain, new Header {
+                .Select(x => _configuration.HeaderOverrides.Apply(chain, new Header
+                {
                     Type = x.Type.ToString(),
                     Name = x.Name,
                     Comments = x.Comments,
@@ -345,25 +371,27 @@ namespace FubuMVC.Swank.Specification
             var dataType = _typeConvention.GetDescription(type);
             var rootType = dataType.WhenNotNull(x => x.Type).Otherwise(type);
             return new Data
-                {
-                    Name = dataType.WhenNotNull(y => y.Name).OtherwiseDefault(),
-                    Comments = comments,
-                    Type = action.WhenNotNull(x => _configuration.InputTypeIdConvention(rootType, x))
+            {
+                Name = dataType.WhenNotNull(y => y.Name).OtherwiseDefault(),
+                Comments = comments,
+                Type = action.WhenNotNull(x => _configuration.InputTypeIdConvention(rootType, x))
                             .Otherwise(_configuration.TypeIdConvention(rootType)),
-                    IsArray = type.IsArray || type.IsList()
-                };
-        } 
+                IsArray = type.IsArray || type.IsList()
+            };
+        }
 
         private List<Option> GetOptions(System.Type type)
         {
-            return type.IsEnum || (type.IsNullable() && Nullable.GetUnderlyingType(type).IsEnum) ? 
+            return type.IsEnum || (type.IsNullable() && Nullable.GetUnderlyingType(type).IsEnum) ?
                 type.GetEnumOptions()
                     .Where(x => !x.HasAttribute<HideAttribute>())
-                    .Select(x => {
+                    .Select(x =>
+                    {
                         var option = _optionConvention.GetDescription(x);
-                        return _configuration.OptionOverrides.Apply(x, new Option {
+                        return _configuration.OptionOverrides.Apply(x, new Option
+                        {
                             Name = option.WhenNotNull(y => y.Name).OtherwiseDefault(),
-                            Comments = option.WhenNotNull(y => y.Comments).OtherwiseDefault(), 
+                            Comments = option.WhenNotNull(y => y.Comments).OtherwiseDefault(),
                             Value = _configuration.EnumValue == EnumValue.AsString ? x.Name : x.GetRawConstantValue().ToString()
                         });
                     }).OrderBy(x => x.Name ?? x.Value).ToList()

@@ -1,4 +1,10 @@
-﻿using System;
+﻿using FubuCore;
+using FubuMVC.Core.Registration;
+using FubuMVC.Core.Registration.Nodes;
+using FubuMVC.Swank.Extensions;
+using FubuMVC.Swank.Specification;
+using Should;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,12 +12,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using FubuCore;
-using FubuMVC.Core.Registration;
-using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.Swank.Extensions;
-using FubuMVC.Swank.Specification;
-using Should;
 using Type = System.Type;
 
 namespace Tests
@@ -26,7 +26,7 @@ namespace Tests
 
     public static class Paths
     {
-        public static string TestHarness { get { return Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\TestHarness");}}
+        public static string TestHarness { get { return Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\..\TestHarness"); } }
     }
 
     public static class TestExtensions
@@ -71,7 +71,7 @@ namespace Tests
 
         public static BehaviorGraph AddActionsInNamespace<T>(this BehaviorGraph graph)
         {
-            return graph.AddActionsInNamespace(typeof (T));
+            return graph.AddActionsInNamespace(typeof(T));
         }
 
         public static BehaviorGraph AddActionsInNamespace(this BehaviorGraph graph, Type type)
@@ -90,7 +90,7 @@ namespace Tests
 
         public static string GetHandlerUrl(this Type handlerType, string rootNamespace)
         {
-            var url = handlerType.Namespace == rootNamespace ? "/" : 
+            var url = handlerType.Namespace == rootNamespace ? "/" :
                 '/' + handlerType.Namespace.Replace(rootNamespace + ".", "").Replace('.', '/').ToLower();
             var handlerMethod = handlerType.GetExecuteMethod();
             var inputType = handlerMethod.GetParameters().Select(x => x.ParameterType).FirstOrDefault();
@@ -98,7 +98,7 @@ namespace Tests
                 .GetProperties()
                 .Aggregate(handlerMethod.Name.Replace("Execute", "").Replace("_", "/").ToLower() + '/',
                 (a, i) => Regex.Replace(a, "/" + i.Name + "/", "/{" + i.Name + "}/", RegexOptions.IgnoreCase)).TrimEnd('/') : "");
-            return "/" + url.Split(new [] {"/"}, StringSplitOptions.RemoveEmptyEntries).Join("/");
+            return "/" + url.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries).Join("/");
         }
 
         public static string GetHandlerVerb(this Type handlerType)
@@ -109,6 +109,7 @@ namespace Tests
             if (typeName.EndsWith("PutHandler")) return "PUT";
             if (typeName.EndsWith("UpdateHandler")) return "UPDATE";
             if (typeName.EndsWith("DeleteHandler")) return "DELETE";
+            if (typeName.EndsWith("PatchHandler")) return "PATCH";
             throw new Exception("Could not determine verb from handler type name.");
         }
 
@@ -128,8 +129,8 @@ namespace Tests
 
         public static bool InNamespace<T>(this Type type)
         {
-            return type.Namespace == typeof (T).Namespace || 
-                type.Namespace.StartsWith(typeof (T).Namespace + ".");
+            return type.Namespace == typeof(T).Namespace ||
+                type.Namespace.StartsWith(typeof(T).Namespace + ".");
         }
 
         public static string FindTextResourceNamed<T>(this Assembly assembly)

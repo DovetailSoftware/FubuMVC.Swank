@@ -1,18 +1,18 @@
-﻿using System;
+﻿using FubuCore.Reflection;
+using FubuMVC.Core;
+using FubuMVC.Core.Http.AspNet;
+using FubuMVC.Core.Media.Projections;
+using FubuMVC.Core.Registration;
+using FubuMVC.Core.Registration.Nodes;
+using FubuMVC.Core.Registration.ObjectGraph;
+using FubuMVC.Core.Registration.Routes;
+using FubuMVC.Swank.Description;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
-using FubuCore.Reflection;
-using FubuMVC.Core;
-using FubuMVC.Core.Http.AspNet;
-using FubuMVC.Core.Registration;
-using FubuMVC.Core.Registration.Nodes;
-using FubuMVC.Core.Registration.ObjectGraph;
-using FubuMVC.Core.Registration.Routes;
-using FubuMVC.Core.Media.Projections;
-using FubuMVC.Swank.Description;
 
 namespace FubuMVC.Swank.Extensions
 {
@@ -30,7 +30,7 @@ namespace FubuMVC.Swank.Extensions
 
         public static string FirstPatternSegment(this IRouteDefinition route)
         {
-            return route.Pattern.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+            return route.Pattern.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
         }
 
         public static bool AllowsGet(this IRouteDefinition route) { return route.AllowsMethod("GET"); }
@@ -38,6 +38,7 @@ namespace FubuMVC.Swank.Extensions
         public static bool AllowsPut(this IRouteDefinition route) { return route.AllowsMethod("PUT"); }
         public static bool AllowsUpdate(this IRouteDefinition route) { return route.AllowsMethod("UPDATE"); }
         public static bool AllowsDelete(this IRouteDefinition route) { return route.AllowsMethod("DELETE"); }
+        public static bool AllowsPatch(this IRouteDefinition route) { return route.AllowsMethod("PATCH"); }
 
         public static bool AllowsMethod(this IRouteDefinition route, string method)
         {
@@ -51,9 +52,9 @@ namespace FubuMVC.Swank.Extensions
 
         public static bool IsHidden(this PropertyInfo property)
         {
-            return property.PropertyType.HasAttribute<HideAttribute>() || 
+            return property.PropertyType.HasAttribute<HideAttribute>() ||
             property.HasAttribute<HideAttribute>() ||
-            property.HasAttribute<XmlIgnoreAttribute>(); 
+            property.HasAttribute<XmlIgnoreAttribute>();
         }
 
         public static bool IsUrlParameter(this PropertyInfo property, ActionCall action)
@@ -91,6 +92,7 @@ namespace FubuMVC.Swank.Extensions
                    (property.HasAttribute<QueryStringAttribute>() ||
                     !(route.AllowsPost() ||
                       route.AllowsPut() ||
+                      route.AllowsPatch() ||
                       route.AllowsUpdate()));
         }
 
