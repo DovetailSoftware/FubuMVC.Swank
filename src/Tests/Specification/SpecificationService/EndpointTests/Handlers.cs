@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FubuMVC.Core;
+using FubuMVC.Swank.Description;
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using FubuMVC.Core;
-using FubuMVC.Swank.Description;
 
 namespace Tests.Specification.SpecificationService.EndpointTests
 {
@@ -27,6 +27,9 @@ namespace Tests.Specification.SpecificationService.EndpointTests
 
             [Description("Some delete handler name", "Some delete handler description")]
             public class DeleteHandler { public object Execute_Delete_Id(Request request) { return null; } }
+
+            [Description("Some patch handler name", "Some patch handler description")]
+            public class PatchHandler { public object Execute_Patch_Id(Request request) { return null; } }
         }
 
         namespace ActionDescription
@@ -58,6 +61,12 @@ namespace Tests.Specification.SpecificationService.EndpointTests
                 [Description("Some delete action name", "Some delete action description")]
                 public object Execute_Delete_Id(Request request) { return null; }
             }
+
+            public class PatchHandler
+            {
+                [Description("Some patch action name", "Some patch action description")]
+                public object Execute_Patch_Id(Request request) { return null; }
+            }
         }
     }
 
@@ -66,7 +75,7 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         public class HiddenActionGetHandler
         {
             [Hide]
-            public object Execute_HiddenAction(object request) { return null; } 
+            public object Execute_HiddenAction(object request) { return null; }
         }
 
         [Hide]
@@ -89,7 +98,7 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         [RequestComments("Some get request description")]
         public class GetHandler { public object Execute_Get(GetRequest request) { return null; } }
 
-        public class PostRequest {}
+        public class PostRequest { }
         [RequestComments("Some post request description")]
         public class PostHandler { public object Execute_Post(PostRequest request) { return null; } }
 
@@ -101,7 +110,11 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         [RequestComments("Some delete request description")]
         public class DeleteHandler { public object Execute_Delete(DeleteRequest request) { return null; } }
 
-        public class RequestItem {}
+        public class PatchRequest { }
+        [RequestComments("Some patch request description")]
+        public class PatchHandler { public object Execute_Patch(PatchRequest request) { return null; } }
+
+        public class RequestItem { }
 
         public class CollectionPostHandler { public object Execute_Collection(List<RequestItem> request) { return null; } }
 
@@ -135,6 +148,10 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         public class DeleteResponse { }
         [ResponseComments("Some delete response description")]
         public class DeleteHandler { public DeleteResponse Execute_Delete(object request) { return null; } }
+
+        public class PatchResponse { }
+        [ResponseComments("Some patch response description")]
+        public class PatchHandler { public PatchResponse Execute_Patch(object request) { return null; } }
 
         public class ResponseItem { }
 
@@ -215,9 +232,9 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         public enum Options
         {
             [Hide]
-            Option2, 
+            Option2,
             [Description("Option 1", "Option 1 description.")]
-            Option1, 
+            Option1,
             Option3
         }
 

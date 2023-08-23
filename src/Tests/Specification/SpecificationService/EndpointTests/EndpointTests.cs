@@ -51,6 +51,16 @@ namespace Tests.Specification.SpecificationService.EndpointTests
         }
 
         [Test]
+        public void should_set_handler_description_for_patch_endpoint()
+        {
+            var endpoint = Spec.GetEndpoint<EndpointDescriptions.HandlerDescription.PatchHandler>();
+            endpoint.Name.ShouldEqual("Some patch handler name");
+            endpoint.Comments.ShouldEqual("Some patch handler description");
+            endpoint.Method.ShouldEqual("PATCH");
+            endpoint.Url.ShouldEqual("/endpointdescriptions/handlerdescription/patch/{Id}");
+        }
+
+        [Test]
         public void should_set_handler_description_for_post_endpoint()
         {
             var endpoint = Spec.GetEndpoint<EndpointDescriptions.HandlerDescription.PostHandler>();
@@ -128,6 +138,16 @@ namespace Tests.Specification.SpecificationService.EndpointTests
             endpoint.Comments.ShouldEqual("Some delete action description");
             endpoint.Method.ShouldEqual("DELETE");
             endpoint.Url.ShouldEqual("/endpointdescriptions/actiondescription/delete/{Id}");
+        }
+
+        [Test]
+        public void should_set_action_description_for_patch_endpoint()
+        {
+            var endpoint = Spec.GetEndpoint<EndpointDescriptions.ActionDescription.PatchHandler>();
+            endpoint.Name.ShouldEqual("Some patch action name");
+            endpoint.Comments.ShouldEqual("Some patch action description");
+            endpoint.Method.ShouldEqual("PATCH");
+            endpoint.Url.ShouldEqual("/endpointdescriptions/actiondescription/patch/{Id}");
         }
 
         [Test]
