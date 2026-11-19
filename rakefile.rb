@@ -24,8 +24,10 @@ def self.getMsbuildToolsPath()
     "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\",
     "C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Current\\Bin\\",
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\",
+    # The TeamCity agents in Blue-agent-pool have VS 2019 Build Tools.
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin\\",
   ]
-  .find { |path| File.exists?(path) }
+  .find { |path| File.exist?(path) }
 
   if(location == nil)
     raise "Couldn't find MSBuild!"
